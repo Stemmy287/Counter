@@ -1,0 +1,29 @@
+.app {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 250px;
+}
+
+.value {
+    font-size: 100px;
+    background-color: #61dafb;
+    width: 350px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.red {
+    color: red;
+}
+
+.paper {
+    text-align: center;
+    width: 400px;
+    height: 300px;
+    display: table-cell;
+    vertical-align: middle
+}
