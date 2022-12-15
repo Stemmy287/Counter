@@ -1,40 +1,53 @@
 import React from 'react';
-import {DisplaySettingValue} from "./DisplaySettingValue/DisplaySettingValue";
 import {ButtonCont} from "../Button/Button";
+import {Input} from "../Input/Input";
+import {useDispatch, useSelector} from "react-redux";
+import {AppReduxStore} from "../redux/store";
+import {
+    ChangeFinalValueAC,
+    ChangeStartValueAC, EnterWarningAC, IsSettingAC,
+    ResetWarningAC, SetValueResetValueAC,
+    ValueType
+} from "../redux/valueReducer";
 
-type SettingValuePropsType = {
-    changeStartValue: (changeFValue: number) => void
-    changeFinalValue: (changeFValue: number) => void
-    enterValueWarning: () => void
-    resetEnterValueWarning: () => void
-    settValue: () => void
-    startValue: number
-    finalValue: number
-}
+export const SettingValue: React.FC = () => {
 
-export const SettingValue: React.FC<SettingValuePropsType> = ({
-                                                                  startValue,
-                                                                  finalValue,
-                                                                  changeStartValue,
-                                                                  changeFinalValue,
-                                                                  settValue,
-                                                                  enterValueWarning,
-                                                                  resetEnterValueWarning
-                                                              }) => {
+    const valueState = useSelector<AppReduxStore, ValueType>(state => state.valueState)
+    const dispatch = useDispatch()
 
+    const errorStart = valueState.startValue === valueState.finalValue
+        ? true
+        : valueState.startValue > valueState.finalValue
+            ? true
+            : valueState.startValue < 0
+
+    const errorFinal = valueState.startValue === valueState.finalValue
 
     return (
         <div>
-            <DisplaySettingValue
-                startValue={startValue}
-                finalValue={finalValue}
-                changeStartValue={changeStartValue}
-                changeFinalValue={changeFinalValue}
-                enterValueWarning={enterValueWarning}
-                resetEnterValueWarning={resetEnterValueWarning}
-            />
-            <ButtonCont name={'Set'} callback={settValue}
-                        disabled={startValue < 0 || startValue === finalValue || finalValue < startValue}/>
+            <div>
+                <div>
+                    Start value: <Input
+                    error={errorStart}
+                    value={valueState.startValue}
+                    onChangeCallback={(changeSValue) => dispatch(ChangeStartValueAC(changeSValue))}
+                    onBlurCallback={() => dispatch(ResetWarningAC())}
+                    onFocusCallback={() => dispatch(EnterWarningAC())}/>
+                </div>
+                <div>
+                    Final value: <Input
+                    error={errorFinal}
+                    value={valueState.finalValue}
+                    onChangeCallback={(changeFValue) => dispatch(ChangeFinalValueAC(changeFValue))}
+                    onBlurCallback={() => dispatch(ResetWarningAC())}
+                    onFocusCallback={() => dispatch(EnterWarningAC())}/>
+                </div>
+            </div>
+            <ButtonCont name={'Set'} callback={() => {
+                dispatch(SetValueResetValueAC())
+                dispatch(IsSettingAC(false))
+            }}
+                        disabled={valueState.startValue < 0 || valueState.startValue === valueState.finalValue || valueState.finalValue < valueState.startValue}/>
         </div>
     );
 };

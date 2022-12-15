@@ -17,7 +17,6 @@ export const Input = (props: InputPropsType) => {
         debugger
         if (onChangeCallback) {
             onChangeCallback(e.currentTarget.valueAsNumber)
-
         }
     }
 
