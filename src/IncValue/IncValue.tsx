@@ -24,8 +24,8 @@ export const IncValue: React.FC<IncValuePropsType> = (props) => {
     const valueState = useSelector<AppReduxStore, ValueType>(state => state.valueState)
     const dispatch = useDispatch()
 
-    const display = valueState.finalValue <= valueState.startValue || valueState.startValue < 0 || valueState.finalValue < 0 ?
-        <div style={styleDisplayIncorrect}>Incorrect value!</div>
+    const display = valueState.finalValue <= valueState.startValue || valueState.startValue < 0 || valueState.finalValue < 0
+        ? <div style={styleDisplayIncorrect}>Incorrect value!</div>
         : valueState.warning
             ? <div style={styleDisplayWarningEnter}>{valueState.warning}</div>
             : <div style={valueState.value === valueState.finalValue ? styleDisplayValueRed : styleIncValue}>{valueState.value}</div>
