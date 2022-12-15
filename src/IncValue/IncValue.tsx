@@ -2,10 +2,10 @@ import React from 'react';
 import {ButtonCont} from "../Button/Button";
 import {
     styleDisplayIncorrect,
-    styleDisplayValue,
+    styleIncValue,
     styleDisplayValueRed,
     styleDisplayWarningEnter
-} from "./styleDisplayValue";
+} from "./styleIncValue";
 import {useDispatch, useSelector} from "react-redux";
 import {AppReduxStore} from "../redux/store";
 import {
@@ -28,7 +28,7 @@ export const IncValue: React.FC<IncValuePropsType> = (props) => {
         <div style={styleDisplayIncorrect}>Incorrect value!</div>
         : valueState.warning
             ? <div style={styleDisplayWarningEnter}>{valueState.warning}</div>
-            : <div style={valueState.value === valueState.finalValue ? styleDisplayValueRed : styleDisplayValue}>{valueState.value}</div>
+            : <div style={valueState.value === valueState.finalValue ? styleDisplayValueRed : styleIncValue}>{valueState.value}</div>
     return (
         <div>
             {display}

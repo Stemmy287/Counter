@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FocusEvent} from 'react';
+import React, {ChangeEvent} from 'react';
 import {TextField} from "@mui/material";
 
 type InputPropsType = {
@@ -20,13 +20,13 @@ export const Input = (props: InputPropsType) => {
         }
     }
 
-    const onFocusHandler = (e: FocusEvent<HTMLInputElement, Element>) => {
+    const onFocusHandler = () => {
         if (onFocusCallback) {
             onFocusCallback()
         }
     }
 
-    const onBlurHandler = (e: FocusEvent<HTMLInputElement, Element>) => {
+    const onBlurHandler = () => {
         if (onBlurCallback) {
             onBlurCallback()
         }

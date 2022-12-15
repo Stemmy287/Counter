@@ -12,7 +12,7 @@ export const styleDisplayWarningEnter = {
 
 }
 
-export const styleDisplayValue = {
+export const styleIncValue = {
     fontSize: '75px'
 }
 
