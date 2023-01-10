@@ -1,4 +1,3 @@
-
 import {
     ChangeFinalValueAC,
     ChangeStartValueAC, EnterWarningAC,

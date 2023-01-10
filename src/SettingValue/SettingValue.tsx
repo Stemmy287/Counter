@@ -5,9 +5,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppReduxStore} from "../redux/store";
 import {
     ChangeFinalValueAC,
-    ChangeStartValueAC, EnterWarningAC, IsSettingAC,
-    ResetWarningAC, SetValueResetValueAC,
-    ValueType
+    ChangeStartValueAC,
+    EnterWarningAC,
+    IsSettingAC,
+    ResetWarningAC,
+    SetValueResetValueAC
 } from "../redux/valueReducer";
 
 export const SettingValue: React.FC = memo(() => {

@@ -1,19 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {ButtonCont} from "../Button/Button";
-import {
-    styleDisplayIncorrect,
-    styleIncValue,
-    styleDisplayValueRed,
-    styleDisplayWarningEnter
-} from "./styleIncValue";
+import {styleDisplayIncorrect, styleDisplayValueRed, styleDisplayWarningEnter, styleIncValue} from "./styleIncValue";
 import {useDispatch, useSelector} from "react-redux";
 import {AppReduxStore} from "../redux/store";
-import {
-    IncreaseAC, IncValueThunk,
-    IsSettingAC,
-    SetValueResetValueAC,
-    ValueType
-} from "../redux/valueReducer";
+import {IncreaseAC, IsSettingAC, SetValueResetValueAC, ValueType} from "../redux/valueReducer";
 
 type IncValuePropsType = {
     buttonSetting: boolean
