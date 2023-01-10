@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ButtonCont} from "../Button/Button";
 import {
     styleDisplayIncorrect,
@@ -9,7 +9,7 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {AppReduxStore} from "../redux/store";
 import {
-    IncreaseAC,
+    IncreaseAC, IncValueThunk,
     IsSettingAC,
     SetValueResetValueAC,
     ValueType
@@ -20,9 +20,17 @@ type IncValuePropsType = {
 }
 
 export const IncValue: React.FC<IncValuePropsType> = (props) => {
-
+    console.log('incValue render')
     const valueState = useSelector<AppReduxStore, ValueType>(state => state.valueState)
     const dispatch = useDispatch()
+
+    const increaseValueHandler = () => {
+        dispatch(IncreaseAC())
+    }
+
+    const resetValueHandler = () => {
+        dispatch(SetValueResetValueAC())
+    }
 
     const display = valueState.finalValue <= valueState.startValue || valueState.startValue < 0 || valueState.finalValue < 0
         ? <div style={styleDisplayIncorrect}>Incorrect value!</div>
@@ -32,8 +40,8 @@ export const IncValue: React.FC<IncValuePropsType> = (props) => {
     return (
         <div>
             {display}
-            <ButtonCont name={'inc'} callback={() => dispatch(IncreaseAC())} disabled={valueState.value === valueState.finalValue}/>
-            <ButtonCont name={'reset'} callback={() => dispatch(SetValueResetValueAC())} disabled={valueState.value === valueState.startValue}/>
+            <ButtonCont name={'inc'} callback={increaseValueHandler} disabled={valueState.value === valueState.finalValue}/>
+            <ButtonCont name={'reset'} callback={resetValueHandler} disabled={valueState.value === valueState.startValue}/>
             {props.buttonSetting && <ButtonCont name={'setting'} callback={() => dispatch(IsSettingAC(true))}/>}
         </div>
     );

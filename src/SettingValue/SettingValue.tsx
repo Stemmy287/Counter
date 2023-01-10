@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {ButtonCont} from "../Button/Button";
 import {Input} from "../Input/Input";
 import {useDispatch, useSelector} from "react-redux";
@@ -10,18 +10,19 @@ import {
     ValueType
 } from "../redux/valueReducer";
 
-export const SettingValue: React.FC = () => {
-
-    const valueState = useSelector<AppReduxStore, ValueType>(state => state.valueState)
+export const SettingValue: React.FC = memo(() => {
+    console.log('settingValue render')
+    const startValue = useSelector<AppReduxStore, number>(state => state.valueState.startValue)
+    const finalValue = useSelector<AppReduxStore, number>(state => state.valueState.finalValue)
     const dispatch = useDispatch()
 
-    const errorStart = valueState.startValue === valueState.finalValue
+    const errorStart = startValue === finalValue
         ? true
-        : valueState.startValue > valueState.finalValue
+        : startValue > finalValue
             ? true
-            : valueState.startValue < 0
+            : startValue < 0
 
-    const errorFinal = valueState.startValue === valueState.finalValue
+    const errorFinal = startValue === finalValue
 
     return (
         <div>
@@ -29,7 +30,7 @@ export const SettingValue: React.FC = () => {
                 <div>
                     Start value: <Input
                     error={errorStart}
-                    value={valueState.startValue}
+                    value={startValue}
                     onChangeCallback={(changeSValue) => dispatch(ChangeStartValueAC(changeSValue))}
                     onBlurCallback={() => dispatch(ResetWarningAC())}
                     onFocusCallback={() => dispatch(EnterWarningAC())}/>
@@ -37,7 +38,7 @@ export const SettingValue: React.FC = () => {
                 <div>
                     Final value: <Input
                     error={errorFinal}
-                    value={valueState.finalValue}
+                    value={finalValue}
                     onChangeCallback={(changeFValue) => dispatch(ChangeFinalValueAC(changeFValue))}
                     onBlurCallback={() => dispatch(ResetWarningAC())}
                     onFocusCallback={() => dispatch(EnterWarningAC())}/>
@@ -47,8 +48,8 @@ export const SettingValue: React.FC = () => {
                 dispatch(SetValueResetValueAC())
                 dispatch(IsSettingAC(false))
             }}
-                        disabled={valueState.startValue < 0 || valueState.startValue === valueState.finalValue || valueState.finalValue < valueState.startValue}/>
+                        disabled={startValue < 0 || startValue === finalValue || finalValue < startValue}/>
         </div>
     );
-};
+});
 

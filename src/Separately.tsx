@@ -7,7 +7,7 @@ import {IncValue} from "./IncValue/IncValue";
 import {SettingValue} from "./SettingValue/SettingValue";
 
 export const Separately = () => {
-
+    console.log('separately render')
     const isSetting = useSelector<AppReduxStore, boolean>(state => state.valueState.isSetting)
 
     return (

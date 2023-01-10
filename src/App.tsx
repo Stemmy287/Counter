@@ -6,7 +6,7 @@ import {Separately} from "./Separately";
 
 
 function App() {
-
+    console.log('app render')
     return (
         <div>
             <AppBar position="static">

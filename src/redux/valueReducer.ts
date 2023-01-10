@@ -1,3 +1,5 @@
+import {Dispatch} from "redux";
+
 type ActionType = SetValueActionType
     | IncreaseActionType
     | ChangeStartValueActionType
@@ -107,3 +109,7 @@ export const IsSettingAC = (isSetting: boolean): IsSettingActionType => ({
     type: 'SETTING-ON-OFF',
     isSetting
 })
+
+export const IncValueThunk = (value: number) => (dispatch: Dispatch) => {
+
+}

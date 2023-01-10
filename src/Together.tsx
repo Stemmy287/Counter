@@ -5,6 +5,7 @@ import {IncValue} from "./IncValue/IncValue";
 import {SettingValue} from "./SettingValue/SettingValue";
 
 export const Together = () => {
+    console.log('together render')
     return (
         <div>
             <Container fixed>

@@ -14,7 +14,6 @@ export const Input = (props: InputPropsType) => {
     const {onChangeCallback, onFocusCallback, onBlurCallback, error, value} = props
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        debugger
         if (onChangeCallback) {
             onChangeCallback(e.currentTarget.valueAsNumber)
         }
